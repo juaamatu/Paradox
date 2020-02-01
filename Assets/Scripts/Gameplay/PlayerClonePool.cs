@@ -20,7 +20,7 @@ public class PlayerClonePool : MonoBehaviour
         }
     }
 
-    public PlayerCloneMovement GetPlayerCloneMovement(Queue<SavedPlayerFrame> savedPlayerFrames)
+    public PlayerCloneMovement GetPlayerCloneMovement(List<SavedPlayerFrame> savedPlayerFrames)
     {
         PlayerCloneMovement playerCloneMovement = pool.Pop();
         playerCloneMovement.Initialize(savedPlayerFrames);

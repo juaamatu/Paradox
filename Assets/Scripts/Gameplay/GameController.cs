@@ -25,7 +25,7 @@ public class GameController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Queue<SavedPlayerFrame> savedPlayerFrames = playerMovement.GetFrames();
+            List<SavedPlayerFrame> savedPlayerFrames = playerMovement.GetFrames();
             PlayerCloneMovement playerCloneMovement = playerClonePool.GetPlayerCloneMovement(savedPlayerFrames);
             playerCloneMovement.Enable();
         }

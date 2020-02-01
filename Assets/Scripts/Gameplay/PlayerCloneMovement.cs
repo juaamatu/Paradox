@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class PlayerCloneMovement : MonoBehaviour
 {
-    private Queue<SavedPlayerFrame> savedPlayerFrames;
+    private List<SavedPlayerFrame> savedPlayerFrames;
 
     private void FixedUpdate()
     {
         if (savedPlayerFrames != null && savedPlayerFrames.Count > 0)
         {
-            SavedPlayerFrame savedPlayerFrame = savedPlayerFrames.Dequeue();
+            SavedPlayerFrame savedPlayerFrame = savedPlayerFrames[0];
+            savedPlayerFrames.RemoveAt(0);
             transform.position = savedPlayerFrame.Position;
             transform.rotation = savedPlayerFrame.Rotation;
         }
@@ -21,7 +22,7 @@ public class PlayerCloneMovement : MonoBehaviour
         }
     }
 
-    public void Initialize(Queue<SavedPlayerFrame> frames)
+    public void Initialize(List<SavedPlayerFrame> frames)
     {
         savedPlayerFrames = frames;
         enabled = false;
