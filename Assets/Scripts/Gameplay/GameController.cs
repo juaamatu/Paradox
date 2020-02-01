@@ -61,7 +61,7 @@ public class GameController : MonoBehaviour
     {
         foreach (IRewindable rewindable in rewindables)
         {
-            rewindable.StartRewind(2);
+            rewindable.StartRewind(4);
         }
     }
     

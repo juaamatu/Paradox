@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: d2df58c8df1454a209b57b5b3469168c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -36727,6 +36727,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5855824622264994142}
     m_Modifications:
+    - target: {fileID: 6928269252164686050, guid: 50876656810013c41b046114ec9a2dc0,
+        type: 3}
+      propertyPath: m_Name
+      value: MazeCollider
+      objectReference: {fileID: 0}
     - target: {fileID: 6928269252164686063, guid: 50876656810013c41b046114ec9a2dc0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -36781,21 +36786,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6928269252164686050, guid: 50876656810013c41b046114ec9a2dc0,
-        type: 3}
-      propertyPath: m_Name
-      value: MazeCollider
-      objectReference: {fileID: 0}
-    - target: {fileID: 6928269252164686062, guid: 50876656810013c41b046114ec9a2dc0,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6928269252164686051, guid: 50876656810013c41b046114ec9a2dc0,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50876656810013c41b046114ec9a2dc0, type: 3}

@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour, IRewindable
             Vector3 movement = new Vector3(horizontal, 0, vertical).normalized * Time.deltaTime * moveSpeed;
             characterController.Move(movement);
         
-            if (Mathf.Abs(horizontal + vertical) > 0)
+            if (Mathf.Abs(horizontal) + Mathf.Abs(vertical) > 0)
             {
                 Quaternion targetRotation = Quaternion.LookRotation(movement);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * turnSpeed);
