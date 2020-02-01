@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour, IRewindable
     private List<SavedPlayerFrame> savedPlayerFrames;
     private float horizontal;
     private float vertical;
+    private int rewindSpeed;
     private bool isRewinding;
 
     private const string HorizontalAxis = "Horizontal";
@@ -42,9 +43,20 @@ public class PlayerMovement : MonoBehaviour, IRewindable
 
     private void FixedUpdate()
     {
-        if (isRewinding)
+        if (isRewinding && savedPlayerFrames.Count > 0)
         {
-            
+            SavedPlayerFrame savedPlayerFrame = savedPlayerFrames[savedPlayerFrames.Count - 1];
+            int popIndex = Mathf.Clamp(savedPlayerFrames.Count - rewindSpeed, 0, savedPlayerFrames.Count - 1);
+            for (int i = 0; i < rewindSpeed; i++)
+            {
+                if (savedPlayerFrames.Count == 0)
+                {
+                    break;
+                }
+                savedPlayerFrames.RemoveAt(savedPlayerFrames.Count - 1);
+            }
+            transform.position = savedPlayerFrame.Position;
+            transform.rotation = savedPlayerFrame.Rotation;
         }
         else
         {
@@ -58,8 +70,14 @@ public class PlayerMovement : MonoBehaviour, IRewindable
         return new List<SavedPlayerFrame>(savedPlayerFrames);
     }
 
-    public void Rewind()
+    public void StartRewind(int speed)
     {
-        
+        isRewinding = true;
+        rewindSpeed = speed;
+    }
+
+    public void EndRewind()
+    {
+        isRewinding = false;
     }
 }

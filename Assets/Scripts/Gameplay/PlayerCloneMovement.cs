@@ -1,18 +1,21 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCloneMovement : MonoBehaviour
+public class PlayerCloneMovement : MonoBehaviour, IRewindable
 {
     private List<SavedPlayerFrame> savedPlayerFrames;
+    private bool isRewinding;
+    private int rewindSpeed;
+    private int currentFrameIndex = 0;
 
     private void FixedUpdate()
     {
         if (savedPlayerFrames != null && savedPlayerFrames.Count > 0)
         {
-            SavedPlayerFrame savedPlayerFrame = savedPlayerFrames[0];
-            savedPlayerFrames.RemoveAt(0);
+            currentFrameIndex =
+                Mathf.Clamp(isRewinding ? currentFrameIndex - rewindSpeed : currentFrameIndex + 1, 0, savedPlayerFrames.Count - 1);
+            SavedPlayerFrame savedPlayerFrame = savedPlayerFrames[currentFrameIndex];
+            Debug.Log(currentFrameIndex);
             transform.position = savedPlayerFrame.Position;
             transform.rotation = savedPlayerFrame.Rotation;
         }
@@ -31,5 +34,16 @@ public class PlayerCloneMovement : MonoBehaviour
     public void Enable()
     {
         enabled = true;
+    }
+
+    public void StartRewind(int speed)
+    {
+        isRewinding = true;
+        rewindSpeed = speed;
+    }
+
+    public void EndRewind()
+    {
+        isRewinding = false;
     }
 }

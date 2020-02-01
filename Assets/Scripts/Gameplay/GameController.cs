@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
@@ -28,6 +29,25 @@ public class GameController : MonoBehaviour
             List<SavedPlayerFrame> savedPlayerFrames = playerMovement.GetFrames();
             PlayerCloneMovement playerCloneMovement = playerClonePool.GetPlayerCloneMovement(savedPlayerFrames);
             playerCloneMovement.Enable();
+        }
+        
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            IRewindable[] rewindables = GetComponentsInChildren<IRewindable>(true);
+            Debug.Log(rewindables.Length);
+            foreach (IRewindable rewindable in rewindables)
+            {
+                rewindable.StartRewind(2);
+            }
+        }
+        else if (Input.GetKeyUp(KeyCode.R))
+        {
+            IRewindable[] rewindables = GetComponentsInChildren<IRewindable>(true);
+            Debug.Log(rewindables.Length);
+            foreach (IRewindable rewindable in rewindables)
+            {
+                rewindable.EndRewind();
+            }
         }
     }
 }

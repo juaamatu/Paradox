@@ -1,4 +1,5 @@
 ﻿public interface IRewindable
 {
-    void Rewind();
+    void StartRewind(int rewindSpeed);
+    void EndRewind();
 }

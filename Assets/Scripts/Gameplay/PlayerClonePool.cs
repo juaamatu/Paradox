@@ -15,6 +15,7 @@ public class PlayerClonePool : MonoBehaviour
         for (int i = 0; i < cloneCount; i++)
         {
             PlayerCloneMovement playerCloneMovement = Instantiate(playerCloneMovementPrefab);
+            playerCloneMovement.transform.SetParent(transform);
             playerCloneMovement.gameObject.SetActive(false);
             pool.Push(playerCloneMovement);
         }
