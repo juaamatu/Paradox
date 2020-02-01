@@ -1,28 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public class GoalTrigger : MonoBehaviour
 {
-   // [SerializeField] private string targetTag;
+    [Header("References")]
+    [SerializeField] private CinemachineVirtualCamera virtualCamera;
+    
+    [Header("Settings")]
     [SerializeField] private int triggerIndex;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            GameController.Instance.TriggerReached(triggerIndex);
+            GameController.Instance.TriggerReached(triggerIndex, virtualCamera);
         }
         else if (other.CompareTag("Clone"))
         {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -14,6 +15,7 @@ public class GameController : MonoBehaviour
 
     public int TriggersReached { get; private set; }
     private IRewindable[] rewindables;
+    private CinemachineVirtualCamera lastGoalTriggerVirtualCamera;
     public static GameController Instance;
 
     private void Awake()
@@ -73,16 +75,29 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void TriggerReached(int triggerIndex)
+    public void ResetPlayer()
+    {
+        playerMovement.transform.position = spawnPoints[TriggersReached - 1].position;
+        lastGoalTriggerVirtualCamera.Priority = -1;
+    }
+
+    public void TriggerReached(int triggerIndex, CinemachineVirtualCamera virtualCamera)
     {
         if (triggerIndex == TriggersReached)
         {
             TriggersReached++;
             Debug.Log("Player Reached correct trigger");
+            lastGoalTriggerVirtualCamera = virtualCamera;
+            lastGoalTriggerVirtualCamera.Priority = 11;
+            playableDirector.Play();
             if (triggerIndex == 4)
             {
                 Debug.Log("Last trigger");
                 // The end.
+            }
+            else
+            {
+                playerClonePool.GetPlayerCloneMovement(playerMovement.GetFrames()).Enable();
             }
         }
     }
