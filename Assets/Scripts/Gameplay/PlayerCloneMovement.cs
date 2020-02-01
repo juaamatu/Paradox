@@ -12,6 +12,7 @@ public class PlayerCloneMovement : MonoBehaviour, IRewindable
     private int rewindSpeed;
     private int currentFrameIndex = 0;
     private float currentSpeed;
+    public int targetGoalIndex;
 
     private void Update()
     {

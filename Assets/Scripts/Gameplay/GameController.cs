@@ -11,7 +11,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private PlayableDirector playableDirector;
     [SerializeField] private Transform[] spawnPoints;
-    
+
     public int TriggersReached { get; private set; }
     private IRewindable[] rewindables;
     public static GameController Instance;
@@ -41,7 +41,7 @@ public class GameController : MonoBehaviour
             PlayerCloneMovement playerCloneMovement = playerClonePool.GetPlayerCloneMovement(savedPlayerFrames);
             playerCloneMovement.Enable();
         }
-        
+
         if (Input.GetKeyDown(KeyCode.R))
         {
             StartRewind();
@@ -64,7 +64,7 @@ public class GameController : MonoBehaviour
             rewindable.StartRewind(4);
         }
     }
-    
+
     public void EndRewind()
     {
         foreach (IRewindable rewindable in rewindables)
@@ -78,6 +78,20 @@ public class GameController : MonoBehaviour
         if (triggerIndex == TriggersReached)
         {
             TriggersReached++;
+            Debug.Log("Player Reached correct trigger");
+            if (triggerIndex == 4)
+            {
+                Debug.Log("Last trigger");
+                // The end.
+            }
         }
     }
+
+    public void CloneTriggerReached(int triggerIndex)
+    {
+        // Check if clone triggered corresponding goal.
+        // Check if next trigger has been triggered.
+        Debug.Log("Clone reached trigger");
+    }
+
 }
