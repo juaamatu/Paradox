@@ -1,13 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class GameController : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private PlayerClonePool playerClonePool;
     [SerializeField] private PlayerMovement playerMovement;
+    [SerializeField] private PlayableDirector playableDirector;
+    [SerializeField] private Transform[] spawnPoints;
     
+    public int TriggersReached { get; private set; }
+    private IRewindable[] rewindables;
     public static GameController Instance;
 
     private void Awake()
@@ -22,6 +28,11 @@ public class GameController : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        rewindables = GetComponentsInChildren<IRewindable>(true);
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -33,21 +44,40 @@ public class GameController : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.R))
         {
-            IRewindable[] rewindables = GetComponentsInChildren<IRewindable>(true);
-            Debug.Log(rewindables.Length);
-            foreach (IRewindable rewindable in rewindables)
-            {
-                rewindable.StartRewind(2);
-            }
+            StartRewind();
         }
         else if (Input.GetKeyUp(KeyCode.R))
         {
-            IRewindable[] rewindables = GetComponentsInChildren<IRewindable>(true);
-            Debug.Log(rewindables.Length);
-            foreach (IRewindable rewindable in rewindables)
-            {
-                rewindable.EndRewind();
-            }
+            EndRewind();
+        }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            playableDirector.Play();
+        }
+    }
+
+    public void StartRewind()
+    {
+        foreach (IRewindable rewindable in rewindables)
+        {
+            rewindable.StartRewind(2);
+        }
+    }
+    
+    public void EndRewind()
+    {
+        foreach (IRewindable rewindable in rewindables)
+        {
+            rewindable.EndRewind();
+        }
+    }
+
+    public void TriggerReached(int triggerIndex)
+    {
+        if (triggerIndex == TriggersReached)
+        {
+            TriggersReached++;
         }
     }
 }

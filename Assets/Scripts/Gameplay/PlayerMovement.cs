@@ -4,9 +4,12 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour, IRewindable
 {
+    [Header("References")]
+    [SerializeField] private Animator animator;
+    
     [Header("Settings")]
     [SerializeField] [Range(0.1f, 5f)] private float moveSpeed = 1f;
-    [SerializeField] [Range(0.1f, 5f)] private float turnSpeed = 1f;
+    [SerializeField] [Range(0.1f, 10f)] private float turnSpeed = 1f;
     
     private CharacterController characterController;
     private List<SavedPlayerFrame> savedPlayerFrames;
@@ -14,6 +17,7 @@ public class PlayerMovement : MonoBehaviour, IRewindable
     private float vertical;
     private int rewindSpeed;
     private bool isRewinding;
+    private float currentSpeed;
 
     private const string HorizontalAxis = "Horizontal";
     private const string VerticalAxis = "Vertical";
@@ -37,7 +41,10 @@ public class PlayerMovement : MonoBehaviour, IRewindable
             {
                 Quaternion targetRotation = Quaternion.LookRotation(movement);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * turnSpeed);
-            }    
+            }
+
+            currentSpeed = Mathf.Clamp01(Mathf.MoveTowards(currentSpeed, characterController.velocity.magnitude, Time.deltaTime * 5));
+            animator.SetFloat("Speed", currentSpeed);
         }
     }
 
@@ -67,6 +74,7 @@ public class PlayerMovement : MonoBehaviour, IRewindable
 
     public List<SavedPlayerFrame> GetFrames()
     {
+        List<SavedPlayerFrame> ret = new List<SavedPlayerFrame>(savedPlayerFrames);
         return new List<SavedPlayerFrame>(savedPlayerFrames);
     }
 

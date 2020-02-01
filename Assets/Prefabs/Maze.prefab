@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5855824622264994140}
   - component: {fileID: 5855824622264994141}
   - component: {fileID: 5855824622264994130}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Maze
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36727,11 +36727,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5855824622264994142}
     m_Modifications:
-    - target: {fileID: 6928269252164686050, guid: 50876656810013c41b046114ec9a2dc0,
-        type: 3}
-      propertyPath: m_Name
-      value: MazeCollider
-      objectReference: {fileID: 0}
     - target: {fileID: 6928269252164686063, guid: 50876656810013c41b046114ec9a2dc0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -36786,6 +36781,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6928269252164686050, guid: 50876656810013c41b046114ec9a2dc0,
+        type: 3}
+      propertyPath: m_Name
+      value: MazeCollider
       objectReference: {fileID: 0}
     - target: {fileID: 6928269252164686062, guid: 50876656810013c41b046114ec9a2dc0,
         type: 3}

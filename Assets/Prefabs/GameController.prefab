@@ -45,3 +45,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerClonePool: {fileID: 0}
   playerMovement: {fileID: 0}
+  playableDirector: {fileID: 0}
+  spawnPoints: []
