@@ -41,4 +41,9 @@ public class PlayerMovement : MonoBehaviour
         SavedPlayerFrame savedPlayerFrame = new SavedPlayerFrame(transform.position, transform.rotation);
         savedPlayerFrames.Enqueue(savedPlayerFrame);
     }
+
+    public Queue<SavedPlayerFrame> GetFrames()
+    {
+        return new Queue<SavedPlayerFrame>(savedPlayerFrames);
+    }
 }
