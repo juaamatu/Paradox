@@ -17,7 +17,11 @@ public class GoalTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             GameController.Instance.TriggerReached(triggerIndex, virtualCamera);
-            particleSystems.Explode();
+            if(GameController.Instance.TriggersReached != 4)
+            {
+                particleSystems.Explode();
+            }
+
         }
         else if (other.CompareTag("Clone"))
         {
