@@ -37,7 +37,6 @@ public class PlayerCloneMovement : MonoBehaviour, IRewindable
 
         float movementDelta = Vector3.Magnitude(lastPosition - transform.position) / Time.fixedDeltaTime;
         currentSpeed = Mathf.Clamp01(Mathf.MoveTowards(currentSpeed, movementDelta, Time.deltaTime * 5));
-        Debug.Log(currentSpeed);
         lastPosition = transform.position;
     }
 

@@ -13,12 +13,15 @@ public class GameController : MonoBehaviour
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private PlayableDirector playableDirector;
     [SerializeField] private Transform[] spawnPoints;
+    [SerializeField] private CinemachineVirtualCamera endVcam;
+    [SerializeField] private PlayableDirector endTimeline;
 
     public int TriggersReached { get; private set; }
     private IRewindable[] rewindables;
     private CinemachineVirtualCamera lastGoalTriggerVirtualCamera;
     private List<SavedPlayerFrame> lastSavedFrames;
     private List<PlayerCloneMovement> instantiatedCloneMovements = new List<PlayerCloneMovement>();
+    private int clonesReachedFinalButton;
     public static GameController Instance;
 
     private void Awake()
@@ -110,6 +113,7 @@ public class GameController : MonoBehaviour
             instantiatedCloneMovement.ResetPosition();
         }
 
+        clonesReachedFinalButton = 0;
         StartCoroutine(EnablePlayerDelayed());
     }
 
@@ -117,16 +121,23 @@ public class GameController : MonoBehaviour
     {
         if (triggerIndex == TriggersReached)
         {
-            TriggersReached++;
-            lastSavedFrames = playerMovement.GetFrames();
-            Debug.Log("Player Reached correct trigger");
-            lastGoalTriggerVirtualCamera = virtualCamera;
-            lastGoalTriggerVirtualCamera.Priority = 11;
-            playableDirector.Play();
-            if (triggerIndex == 4)
+            if (triggerIndex == 3)
             {
-                Debug.Log("Last trigger");
-                // The end.
+                endVcam.Priority = 12;
+                if (clonesReachedFinalButton == 3)
+                {
+                    endTimeline.gameObject.SetActive(true);
+                    endTimeline.Play();
+                }
+            }
+            else
+            {
+                TriggersReached++;
+                lastSavedFrames = playerMovement.GetFrames();
+                Debug.Log("Player Reached correct trigger");
+                lastGoalTriggerVirtualCamera = virtualCamera;
+                lastGoalTriggerVirtualCamera.Priority = 11;
+                playableDirector.Play();
             }
         }
     }
@@ -136,6 +147,15 @@ public class GameController : MonoBehaviour
         // Check if clone triggered corresponding goal.
         // Check if next trigger has been triggered.
         Debug.Log("Clone reached trigger");
+        clonesReachedFinalButton++;
+        if (TriggersReached == 4)
+        {
+            if (clonesReachedFinalButton == 3)
+            {
+                endTimeline.gameObject.SetActive(true);
+                endTimeline.Play();
+            }
+        }
     }
 
 }
