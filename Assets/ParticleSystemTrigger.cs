@@ -14,6 +14,8 @@ public class ParticleSystemTrigger : MonoBehaviour
         {
             particleSystems[i].Play();
         }
+        yield return new WaitForSeconds(2.0f);
+        Stop();
     }
 
     public void Explode()
