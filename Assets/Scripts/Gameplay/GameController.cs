@@ -75,6 +75,18 @@ public class GameController : MonoBehaviour
         yield return new WaitForSeconds(time);
         EndRewind();
     }
+
+    private IEnumerator RewindCoroutineAlternative()
+    {
+        StartRewind();
+        yield return new WaitForSeconds(1);
+        playerMovement.EndRewind();
+        yield return new WaitForSeconds(0.5f);
+        foreach (PlayerCloneMovement instantiatedCloneMovement in instantiatedCloneMovements)
+        {
+            instantiatedCloneMovement.EndRewind();
+        }
+    }
     
     private IEnumerator EnablePlayerDelayed()
     {
@@ -162,7 +174,7 @@ public class GameController : MonoBehaviour
         }
         else
         {
-            StartRewind(2);
+            RewindCoroutineAlternative();
             clonesReachedFinalButton = 0;
         }
     }
