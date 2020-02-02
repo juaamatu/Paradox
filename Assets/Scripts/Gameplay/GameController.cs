@@ -91,6 +91,7 @@ public class GameController : MonoBehaviour
     private IEnumerator EnablePlayerDelayed()
     {
         yield return null;
+        yield return null;
         playerMovement.enabled = true;
     }
 
