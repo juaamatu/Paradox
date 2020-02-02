@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Tree
+  m_Name: Player3
   m_Shader: {fileID: 4800000, guid: 7f50d1ec77e2cc9459ca9d36924ffc53, type: 3}
   m_ShaderKeywords: BACKSOLID BOTTOMSOLID FRONTSOLID LEFTSOLID RIGHTSOLID TOPSOLID
     _AOUV_UV0 _GRADIENTSPACE_WORLD_SPACE _GRADSETTINGS_B_USE_GLOBAL _GRADSETTINGS_D_USE_GLOBAL
@@ -156,12 +156,12 @@ Material:
     - _AOColor: {r: 1, g: 1, b: 1, a: 1}
     - _AmbientColor: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color1_B: {r: 0.33333334, g: 0.41176474, b: 0.14117648, a: 1}
+    - _Color1_B: {r: 0.14117649, g: 0.2586343, b: 0.4117647, a: 1}
     - _Color1_D: {r: 0, g: 0, b: 0, a: 1}
-    - _Color1_F: {r: 0.53333336, g: 0.78823537, b: 0.19607845, a: 1}
-    - _Color1_L: {r: 0.69803923, g: 0.78823537, b: 0.29411766, a: 1}
-    - _Color1_R: {r: 0.50980395, g: 0.5647059, b: 0.22352943, a: 1}
-    - _Color1_T: {r: 0.38823533, g: 0.7725491, b: 0.011764707, a: 1}
+    - _Color1_F: {r: 0.19607845, g: 0.4933308, b: 0.7882353, a: 1}
+    - _Color1_L: {r: 0.29411763, g: 0.5470586, b: 0.7882353, a: 1}
+    - _Color1_R: {r: 0.22352941, g: 0.3531905, b: 0.5647059, a: 1}
+    - _Color1_T: {r: 0.011764725, g: 0.4472214, b: 0.77254903, a: 1}
     - _Color2_B: {r: 1, g: 1, b: 1, a: 1}
     - _Color2_D: {r: 1, g: 1, b: 1, a: 1}
     - _Color2_F: {r: 1, g: 1, b: 1, a: 1}
