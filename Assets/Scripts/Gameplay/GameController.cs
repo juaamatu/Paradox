@@ -148,13 +148,13 @@ public class GameController : MonoBehaviour
             }
             else
             {
-                TriggersReached++;
                 lastSavedFrames = playerMovement.GetFrames();
                 Debug.Log("Player Reached correct trigger");
                 lastGoalTriggerVirtualCamera = virtualCamera;
                 lastGoalTriggerVirtualCamera.Priority = 11;
                 playableDirector.Play();
             }
+            TriggersReached++;
         }
     }
 
