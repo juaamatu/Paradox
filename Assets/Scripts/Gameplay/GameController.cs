@@ -174,7 +174,7 @@ public class GameController : MonoBehaviour
         }
         else
         {
-            RewindCoroutineAlternative();
+            StartRewind(2);
             clonesReachedFinalButton = 0;
         }
     }
