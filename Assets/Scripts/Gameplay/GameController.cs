@@ -156,6 +156,11 @@ public class GameController : MonoBehaviour
                 endTimeline.Play();
             }
         }
+        else
+        {
+            StartRewind(2);
+            clonesReachedFinalButton = 0;
+        }
     }
 
 }
