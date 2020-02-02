@@ -73,12 +73,7 @@ public class GameController : MonoBehaviour
     {
         StartRewind();
         yield return new WaitForSeconds(time);
-        foreach (PlayerCloneMovement instantiatedCloneMovement in instantiatedCloneMovements)
-        {
-            instantiatedCloneMovement.EndRewind();
-        }
-        yield return new WaitForSeconds(1);
-        playerMovement.EndRewind();
+        EndRewind();
     }
     
     private IEnumerator EnablePlayerDelayed()
