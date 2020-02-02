@@ -84,8 +84,7 @@ public class PlayerMovement : MonoBehaviour, IRewindable
 
     public List<SavedPlayerFrame> GetFrames()
     {
-        List<SavedPlayerFrame> ret = new List<SavedPlayerFrame>(savedPlayerFrames);
-        return ret;
+        return new List<SavedPlayerFrame>(savedPlayerFrames);
     }
 
     public void Reset()

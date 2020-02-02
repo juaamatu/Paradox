@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour
     public int TriggersReached { get; private set; }
     private IRewindable[] rewindables;
     private CinemachineVirtualCamera lastGoalTriggerVirtualCamera;
+    private List<SavedPlayerFrame> lastSavedFrames;
     private List<PlayerCloneMovement> instantiatedCloneMovements = new List<PlayerCloneMovement>();
     public static GameController Instance;
 
@@ -99,7 +100,7 @@ public class GameController : MonoBehaviour
     {
         playerMovement.transform.position = spawnPoints[TriggersReached - 1].position;
         lastGoalTriggerVirtualCamera.Priority = -1;
-        PlayerCloneMovement cloneMovements = playerClonePool.GetPlayerCloneMovement(playerMovement.GetFrames());
+        PlayerCloneMovement cloneMovements = playerClonePool.GetPlayerCloneMovement(lastSavedFrames);
         cloneMovements.Enable();
         instantiatedCloneMovements.Add(cloneMovements);
         playerMovement.Reset();
@@ -117,6 +118,7 @@ public class GameController : MonoBehaviour
         if (triggerIndex == TriggersReached)
         {
             TriggersReached++;
+            lastSavedFrames = playerMovement.GetFrames();
             Debug.Log("Player Reached correct trigger");
             lastGoalTriggerVirtualCamera = virtualCamera;
             lastGoalTriggerVirtualCamera.Priority = 11;
