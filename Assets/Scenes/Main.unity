@@ -3209,7 +3209,7 @@ PrefabInstance:
     - target: {fileID: 2385570678730107699, guid: da027502704b220488a433e78e083b9c,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2385570678730107703, guid: da027502704b220488a433e78e083b9c,
         type: 3}
@@ -4042,6 +4042,22 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4755959137689792569, guid: 8fd09459afb29483b90961cc0f6e927c,
+        type: 3}
+      propertyPath: m_SceneBindings.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4755959137689792569, guid: 8fd09459afb29483b90961cc0f6e927c,
+        type: 3}
+      propertyPath: m_SceneBindings.Array.data[2].key
+      value: 
+      objectReference: {fileID: -6711156566727044437, guid: 6b29220b566424a2a96b7142ac6b16b5,
+        type: 2}
+    - target: {fileID: 4755959137689792569, guid: 8fd09459afb29483b90961cc0f6e927c,
+        type: 3}
+      propertyPath: m_SceneBindings.Array.data[2].value
+      value: 
+      objectReference: {fileID: 1869470775}
     - target: {fileID: 4755959137689792574, guid: 8fd09459afb29483b90961cc0f6e927c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4097,22 +4113,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4755959137689792569, guid: 8fd09459afb29483b90961cc0f6e927c,
-        type: 3}
-      propertyPath: m_SceneBindings.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4755959137689792569, guid: 8fd09459afb29483b90961cc0f6e927c,
-        type: 3}
-      propertyPath: m_SceneBindings.Array.data[2].key
-      value: 
-      objectReference: {fileID: -6711156566727044437, guid: 6b29220b566424a2a96b7142ac6b16b5,
-        type: 2}
-    - target: {fileID: 4755959137689792569, guid: 8fd09459afb29483b90961cc0f6e927c,
-        type: 3}
-      propertyPath: m_SceneBindings.Array.data[2].value
-      value: 
-      objectReference: {fileID: 1869470775}
     - target: {fileID: 4755959137106967873, guid: 8fd09459afb29483b90961cc0f6e927c,
         type: 3}
       propertyPath: m_IsActive
@@ -4148,6 +4148,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4755959137689792569, guid: 8fd09459afb29483b90961cc0f6e927c,
+        type: 3}
+      propertyPath: m_SceneBindings.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4755959137689792569, guid: 8fd09459afb29483b90961cc0f6e927c,
+        type: 3}
+      propertyPath: m_SceneBindings.Array.data[2].key
+      value: 
+      objectReference: {fileID: -6711156566727044437, guid: 6b29220b566424a2a96b7142ac6b16b5,
+        type: 2}
     - target: {fileID: 4755959137689792574, guid: 8fd09459afb29483b90961cc0f6e927c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4203,17 +4214,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4755959137689792569, guid: 8fd09459afb29483b90961cc0f6e927c,
-        type: 3}
-      propertyPath: m_SceneBindings.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4755959137689792569, guid: 8fd09459afb29483b90961cc0f6e927c,
-        type: 3}
-      propertyPath: m_SceneBindings.Array.data[2].key
-      value: 
-      objectReference: {fileID: -6711156566727044437, guid: 6b29220b566424a2a96b7142ac6b16b5,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fd09459afb29483b90961cc0f6e927c, type: 3}
 --- !u!1 &1975846137
