@@ -13,6 +13,7 @@ public class PlayerCloneMovement : MonoBehaviour, IRewindable
     private int currentFrameIndex = 0;
     private float currentSpeed;
     public int targetGoalIndex;
+    private Vector3 lastPosition;
 
     private void Update()
     {
@@ -21,7 +22,6 @@ public class PlayerCloneMovement : MonoBehaviour, IRewindable
 
     private void FixedUpdate()
     {
-        Vector3 lastPosition = transform.position;
         if (savedPlayerFrames != null && savedPlayerFrames.Count > 0)
         {
             currentFrameIndex =
@@ -37,6 +37,8 @@ public class PlayerCloneMovement : MonoBehaviour, IRewindable
 
         float movementDelta = Vector3.Magnitude(lastPosition - transform.position) / Time.fixedDeltaTime;
         currentSpeed = Mathf.Clamp01(Mathf.MoveTowards(currentSpeed, movementDelta, Time.deltaTime * 5));
+        Debug.Log(currentSpeed);
+        lastPosition = transform.position;
     }
 
     public void Initialize(List<SavedPlayerFrame> frames)
@@ -59,5 +61,10 @@ public class PlayerCloneMovement : MonoBehaviour, IRewindable
     public void EndRewind()
     {
         isRewinding = false;
+    }
+
+    public void ResetPosition()
+    {
+        currentFrameIndex = 0;
     }
 }

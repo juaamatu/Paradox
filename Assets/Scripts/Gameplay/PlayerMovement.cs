@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -21,6 +22,7 @@ public class PlayerMovement : MonoBehaviour, IRewindable
 
     private const string HorizontalAxis = "Horizontal";
     private const string VerticalAxis = "Vertical";
+    private const string ViewConeTag = "ViewCone";
 
     private void Awake()
     {
@@ -34,15 +36,6 @@ public class PlayerMovement : MonoBehaviour, IRewindable
         {
             horizontal = Input.GetAxisRaw(HorizontalAxis);
             vertical = Input.GetAxisRaw(VerticalAxis);
-            Vector3 movement = new Vector3(horizontal, 0, vertical).normalized * Time.deltaTime * moveSpeed;
-            characterController.Move(movement);
-        
-            if (Mathf.Abs(horizontal) + Mathf.Abs(vertical) > 0)
-            {
-                Quaternion targetRotation = Quaternion.LookRotation(movement);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * turnSpeed);
-            }
-
             currentSpeed = Mathf.Clamp01(Mathf.MoveTowards(currentSpeed, characterController.velocity.magnitude, Time.deltaTime * 5));
             animator.SetFloat("Speed", currentSpeed);
         }
@@ -52,8 +45,8 @@ public class PlayerMovement : MonoBehaviour, IRewindable
     {
         if (isRewinding && savedPlayerFrames.Count > 0)
         {
-            SavedPlayerFrame savedPlayerFrame = savedPlayerFrames[savedPlayerFrames.Count - 1];
             int popIndex = Mathf.Clamp(savedPlayerFrames.Count - rewindSpeed, 0, savedPlayerFrames.Count - 1);
+            SavedPlayerFrame savedPlayerFrame = savedPlayerFrames[popIndex];
             for (int i = 0; i < rewindSpeed; i++)
             {
                 if (savedPlayerFrames.Count == 0)
@@ -65,17 +58,39 @@ public class PlayerMovement : MonoBehaviour, IRewindable
             transform.position = savedPlayerFrame.Position;
             transform.rotation = savedPlayerFrame.Rotation;
         }
-        else
+        else if (!isRewinding)
         {
+            Vector3 movement = new Vector3(horizontal, 0, vertical).normalized * Time.deltaTime * moveSpeed;
+            characterController.Move(movement);
+        
+            if (Mathf.Abs(horizontal) + Mathf.Abs(vertical) > 0)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(movement);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * turnSpeed);
+            }
+            
             SavedPlayerFrame savedPlayerFrame = new SavedPlayerFrame(transform.position, transform.rotation);
             savedPlayerFrames.Add(savedPlayerFrame);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(ViewConeTag))
+        {
+            GameController.Instance.StartRewind(1f);
         }
     }
 
     public List<SavedPlayerFrame> GetFrames()
     {
         List<SavedPlayerFrame> ret = new List<SavedPlayerFrame>(savedPlayerFrames);
-        return new List<SavedPlayerFrame>(savedPlayerFrames);
+        return ret;
+    }
+
+    public void Reset()
+    {
+        savedPlayerFrames = new List<SavedPlayerFrame>();
     }
 
     public void StartRewind(int speed)

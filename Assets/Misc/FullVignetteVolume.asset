@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: FullVignetteVolume
   m_EditorClassIdentifier: 
   settings:
-  - {fileID: 4640388110936090040}
---- !u!114 &4640388110936090040
+  - {fileID: 1844588793301316657}
+--- !u!114 &1844588793301316657
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -31,7 +31,7 @@ MonoBehaviour:
     overrideState: 1
     value: 1
   mode:
-    overrideState: 1
+    overrideState: 0
     value: 0
   color:
     overrideState: 0
@@ -43,14 +43,14 @@ MonoBehaviour:
     overrideState: 1
     value: 1
   smoothness:
-    overrideState: 1
-    value: 1
+    overrideState: 0
+    value: 0.2
   roundness:
-    overrideState: 1
+    overrideState: 0
     value: 1
   rounded:
-    overrideState: 1
-    value: 1
+    overrideState: 0
+    value: 0
   mask:
     overrideState: 0
     value: {fileID: 0}

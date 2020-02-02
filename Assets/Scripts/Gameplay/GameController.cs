@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using Cinemachine;
 using UnityEngine;
@@ -16,6 +17,7 @@ public class GameController : MonoBehaviour
     public int TriggersReached { get; private set; }
     private IRewindable[] rewindables;
     private CinemachineVirtualCamera lastGoalTriggerVirtualCamera;
+    private List<PlayerCloneMovement> instantiatedCloneMovements = new List<PlayerCloneMovement>();
     public static GameController Instance;
 
     private void Awake()
@@ -59,6 +61,24 @@ public class GameController : MonoBehaviour
         }
     }
 
+    private IEnumerator RewindCoroutine(float time)
+    {
+        StartRewind();
+        yield return new WaitForSeconds(time);
+        EndRewind();
+    }
+    
+    private IEnumerator EnablePlayerDelayed()
+    {
+        yield return null;
+        playerMovement.enabled = true;
+    }
+
+    public void StartRewind(float time)
+    {
+        StartCoroutine(RewindCoroutine(time));
+    }
+
     public void StartRewind()
     {
         foreach (IRewindable rewindable in rewindables)
@@ -79,6 +99,17 @@ public class GameController : MonoBehaviour
     {
         playerMovement.transform.position = spawnPoints[TriggersReached - 1].position;
         lastGoalTriggerVirtualCamera.Priority = -1;
+        PlayerCloneMovement cloneMovements = playerClonePool.GetPlayerCloneMovement(playerMovement.GetFrames());
+        cloneMovements.Enable();
+        instantiatedCloneMovements.Add(cloneMovements);
+        playerMovement.Reset();
+        playerMovement.enabled = false;
+        foreach (PlayerCloneMovement instantiatedCloneMovement in instantiatedCloneMovements)
+        {
+            instantiatedCloneMovement.ResetPosition();
+        }
+
+        StartCoroutine(EnablePlayerDelayed());
     }
 
     public void TriggerReached(int triggerIndex, CinemachineVirtualCamera virtualCamera)
@@ -94,10 +125,6 @@ public class GameController : MonoBehaviour
             {
                 Debug.Log("Last trigger");
                 // The end.
-            }
-            else
-            {
-                playerClonePool.GetPlayerCloneMovement(playerMovement.GetFrames()).Enable();
             }
         }
     }
