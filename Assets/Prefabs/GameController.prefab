@@ -54,6 +54,13 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  endVcam: {fileID: 0}
+  endTimeline: {fileID: 0}
+  playerMaterials:
+  - {fileID: 2100000, guid: acdb4e39e84ece64e97d95a64c952650, type: 2}
+  - {fileID: 2100000, guid: 9a9b506d8dffdd143b6298180ef7cc14, type: 2}
+  - {fileID: 2100000, guid: 4d0f74564c7fd9d49ab154068b9c6097, type: 2}
+  - {fileID: 2100000, guid: c470a67489ee92640848f018cd061230, type: 2}
 --- !u!320 &680479626
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -73,6 +80,14 @@ PlayableDirector:
     value: {fileID: 0}
   - key: {fileID: -6355370769690340930, guid: f251c2b9a5ea94cde8b21e28b6531a1a, type: 2}
     value: {fileID: 680479627}
+  - key: {fileID: 6687700117220044082, guid: f251c2b9a5ea94cde8b21e28b6531a1a, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 672630795922688032, guid: f251c2b9a5ea94cde8b21e28b6531a1a, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 7090873425407629111, guid: f251c2b9a5ea94cde8b21e28b6531a1a, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -5062294645010941237, guid: f251c2b9a5ea94cde8b21e28b6531a1a, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &680479627
