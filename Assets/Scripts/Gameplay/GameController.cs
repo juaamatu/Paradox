@@ -13,8 +13,12 @@ public class GameController : MonoBehaviour
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private PlayableDirector playableDirector;
     [SerializeField] private Transform[] spawnPoints;
+
     [SerializeField] private CinemachineVirtualCamera endVcam;
     [SerializeField] private PlayableDirector endTimeline;
+
+    public Material[] playerMaterials;
+
 
     public int TriggersReached { get; private set; }
     private IRewindable[] rewindables;

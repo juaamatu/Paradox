@@ -6,6 +6,7 @@ public class PlayerCloneMovement : MonoBehaviour, IRewindable
 {
     [Header("References")]
     [SerializeField] private Animator animator;
+    public Renderer cloneModelRend;
     
     private List<SavedPlayerFrame> savedPlayerFrames;
     private bool isRewinding;
@@ -42,6 +43,7 @@ public class PlayerCloneMovement : MonoBehaviour, IRewindable
 
     public void Initialize(List<SavedPlayerFrame> frames)
     {
+        ChangeMaterial();
         savedPlayerFrames = frames;
         enabled = false;
     }
@@ -64,6 +66,12 @@ public class PlayerCloneMovement : MonoBehaviour, IRewindable
 
     public void ResetPosition()
     {
+        
         currentFrameIndex = 0;
+    }
+
+    public void ChangeMaterial()
+    {
+        cloneModelRend.material = GameController.Instance.playerMaterials[Mathf.Clamp(GameController.Instance.TriggersReached - 1, 0, 3)];
     }
 }

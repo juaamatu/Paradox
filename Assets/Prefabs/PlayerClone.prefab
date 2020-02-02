@@ -66,6 +66,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 7348677251270097306}
+  cloneModelRend: {fileID: 3855149722451274811}
   targetGoalIndex: 0
 --- !u!1 &4303366316061502484
 GameObject:
@@ -203,6 +204,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: body
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 91f3d16ad9a977c4fb4ead716f6b54c1,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 7d7813d98ef0845c889067ca12890586, type: 2}
     - target: {fileID: -4216859302048453862, guid: 91f3d16ad9a977c4fb4ead716f6b54c1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -273,11 +279,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: 91f3d16ad9a977c4fb4ead716f6b54c1,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 7d7813d98ef0845c889067ca12890586, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91f3d16ad9a977c4fb4ead716f6b54c1, type: 3}
 --- !u!4 &824647772973438176 stripped
@@ -289,6 +290,12 @@ Transform:
 --- !u!95 &7348677251270097306 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: 91f3d16ad9a977c4fb4ead716f6b54c1,
+    type: 3}
+  m_PrefabInstance: {fileID: 5623597395615924218}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &3855149722451274811 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8902268694115701697, guid: 91f3d16ad9a977c4fb4ead716f6b54c1,
     type: 3}
   m_PrefabInstance: {fileID: 5623597395615924218}
   m_PrefabAsset: {fileID: 0}

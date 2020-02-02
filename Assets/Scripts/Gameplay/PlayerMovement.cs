@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour, IRewindable
     [Header("Settings")]
     [SerializeField] [Range(0.1f, 5f)] private float moveSpeed = 1f;
     [SerializeField] [Range(0.1f, 10f)] private float turnSpeed = 1f;
+    [SerializeField] private Renderer playerModelRend;
     
     private CharacterController characterController;
     private List<SavedPlayerFrame> savedPlayerFrames;
@@ -89,6 +90,7 @@ public class PlayerMovement : MonoBehaviour, IRewindable
 
     public void Reset()
     {
+        playerModelRend.material = GameController.Instance.playerMaterials[Mathf.Clamp(GameController.Instance.TriggersReached,0,3)];
         savedPlayerFrames = new List<SavedPlayerFrame>();
     }
 
