@@ -7,6 +7,7 @@ public class GoalTrigger : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
+    [SerializeField] private ParticleSystemTrigger particleSystems;
     
     [Header("Settings")]
     [SerializeField] private int triggerIndex;
@@ -16,6 +17,7 @@ public class GoalTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             GameController.Instance.TriggerReached(triggerIndex, virtualCamera);
+            particleSystems.Explode();
         }
         else if (other.CompareTag("Clone"))
         {
